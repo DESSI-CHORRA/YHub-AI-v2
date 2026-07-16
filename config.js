@@ -23,7 +23,7 @@ const APP_DESCRIPTION = "Think Less. Ask YHub.";
 =========================*/
 
 // 👇 अपनी Groq API Key यहाँ डालो
-const GROQ_API_KEY="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";
+const GROQ_API_KEY="Hidden";
 // Groq API Endpoint
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 
