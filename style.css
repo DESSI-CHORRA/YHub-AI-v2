@@ -1,0 +1,1455 @@
+/*==================================================
+ YHub AI v2
+ Mobile First
+ Part 1
+==================================================*/
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+:root{
+
+--primary:#6C63FF;
+--secondary:#00D4FF;
+
+--bg:#090B1A;
+--bg2:#14182F;
+
+--glass:rgba(255,255,255,.08);
+
+--border:rgba(255,255,255,.10);
+
+--text:#fff;
+
+--text2:#B7BFEA;
+
+--radius:22px;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:"Poppins",sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#090B1A,
+#151B39,
+#090B1A
+);
+
+color:#fff;
+
+min-height:100vh;
+
+overflow-x:hidden;
+
+}
+
+
+/*==========================
+APP
+==========================*/
+
+.app{
+
+width:100%;
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+/*==========================
+TOPBAR
+==========================*/
+
+.topbar{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+right:0;
+
+height:65px;
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+padding:0 16px;
+
+background:rgba(9,11,26,.82);
+
+backdrop-filter:blur(20px);
+
+border-bottom:1px solid var(--border);
+
+z-index:1000;
+
+}
+
+.topbar h2{
+
+font-size:22px;
+
+font-weight:700;
+
+}
+
+.topbar span{
+
+color:#00D4FF;
+
+}
+
+.topbar button{
+
+width:44px;
+
+height:44px;
+
+border:none;
+
+border-radius:14px;
+
+background:var(--glass);
+
+color:#fff;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+
+/*==========================
+SIDEBAR
+==========================*/
+
+#sidebar{
+
+position:fixed;
+
+top:0;
+
+left:-290px;
+
+width:280px;
+
+height:100vh;
+
+padding:20px;
+
+background:#11152B;
+
+transition:.35s;
+
+z-index:1200;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+border-right:1px solid var(--border);
+
+}
+
+#sidebar.active{
+
+left:0;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+margin-top:50px;
+
+}
+
+.logo i{
+
+font-size:28px;
+
+color:#00D4FF;
+
+}
+
+.logo h2{
+
+font-size:26px;
+
+}
+
+#newChat{
+
+padding:14px;
+
+border:none;
+
+border-radius:16px;
+
+background:
+linear-gradient(
+135deg,
+#6C63FF,
+#00D4FF
+);
+
+color:#fff;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+nav{
+
+display:flex;
+
+flex-direction:column;
+
+gap:10px;
+
+}
+
+nav button{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+background:transparent;
+
+color:#fff;
+
+font-size:15px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+nav button:hover{
+
+background:rgba(255,255,255,.08);
+
+}
+/*==================================================
+ MAIN
+==================================================*/
+
+main{
+
+flex:1;
+
+margin-top:65px;
+
+margin-bottom:90px;
+
+padding:18px;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+
+/*==================================================
+ HERO
+==================================================*/
+
+.hero{
+
+text-align:center;
+
+padding:25px 10px;
+
+animation:fadeUp .7s ease;
+
+}
+
+.hero h1{
+
+font-size:42px;
+
+font-weight:800;
+
+line-height:1.1;
+
+margin-bottom:10px;
+
+background:linear-gradient(
+90deg,
+#FFFFFF,
+#00D4FF,
+#6C63FF
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.hero p{
+
+font-size:17px;
+
+line-height:1.8;
+
+color:var(--text2);
+
+max-width:500px;
+
+margin:auto;
+
+}
+
+
+/*==================================================
+ CHAT AREA
+==================================================*/
+
+#chatArea{
+
+width:100%;
+
+max-width:900px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+
+/*==================================================
+ WELCOME CARD
+==================================================*/
+
+.welcome{
+
+padding:30px 20px;
+
+border-radius:24px;
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+backdrop-filter:blur(20px);
+
+text-align:center;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+}
+
+.welcome i{
+
+font-size:55px;
+
+margin-bottom:18px;
+
+background:linear-gradient(
+135deg,
+#6C63FF,
+#00D4FF
+);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.welcome h2{
+
+font-size:32px;
+
+margin-bottom:12px;
+
+}
+
+.welcome p{
+
+font-size:16px;
+
+color:var(--text2);
+
+}
+
+
+/*==================================================
+ CHAT MESSAGE
+==================================================*/
+
+.message{
+
+display:flex;
+
+gap:12px;
+
+align-items:flex-start;
+
+animation:fadeUp .35s ease;
+
+}
+
+.message.user{
+
+flex-direction:row-reverse;
+
+}
+
+.avatar{
+
+width:46px;
+
+height:46px;
+
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+background:linear-gradient(
+135deg,
+#6C63FF,
+#00D4FF
+);
+
+font-size:20px;
+
+flex-shrink:0;
+
+}
+
+.bubble{
+
+
+position:relative;
+
+padding:16px 18px;
+
+border-radius:18px;
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+line-height:1.8;
+
+font-size:15px;
+
+max-width:82%;
+
+word-break:break-word;
+
+}
+
+.user .bubble{
+
+background:linear-gradient(
+135deg,
+#6C63FF,
+#5A4BFF
+);
+
+}
+
+
+/*==================================================
+ TYPING
+==================================================*/
+
+.typing{
+
+display:none;
+
+gap:6px;
+
+padding:15px;
+
+}
+
+.typing.active{
+
+display:flex;
+
+}
+
+.dot{
+
+width:10px;
+
+height:10px;
+
+border-radius:50%;
+
+background:#00D4FF;
+
+animation:bounce 1s infinite;
+
+}
+
+.dot:nth-child(2){
+
+animation-delay:.2s;
+
+}
+
+.dot:nth-child(3){
+
+animation-delay:.4s;
+
+}
+
+@keyframes bounce{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+/*==================================================
+ INPUT BAR
+==================================================*/
+
+.inputBar{
+
+position:fixed;
+
+left:0;
+
+right:0;
+
+bottom:0;
+
+padding:12px 16px;
+
+background:rgba(9,11,26,.92);
+
+backdrop-filter:blur(25px);
+
+border-top:1px solid var(--border);
+
+z-index:1000;
+
+}
+
+.inputBox{
+
+max-width:900px;
+
+margin:auto;
+
+display:flex;
+
+align-items:flex-end;
+
+gap:10px;
+
+padding:12px;
+
+border-radius:20px;
+
+background:var(--glass);
+
+border:1px solid var(--border);
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+}
+
+.inputBox textarea{
+
+flex:1;
+
+border:none;
+
+outline:none;
+
+background:transparent;
+
+resize:none;
+
+color:#fff;
+
+font-family:"Poppins",sans-serif;
+
+font-size:16px;
+
+min-height:26px;
+
+max-height:180px;
+
+}
+
+.inputBox textarea::placeholder{
+
+color:var(--text2);
+
+}
+
+.inputBox button{
+
+width:46px;
+
+height:46px;
+
+border:none;
+
+border-radius:14px;
+
+cursor:pointer;
+
+font-size:18px;
+
+color:#fff;
+
+background:rgba(255,255,255,.08);
+
+transition:.25s;
+
+}
+
+.inputBox button:hover{
+
+transform:translateY(-2px);
+
+background:rgba(255,255,255,.15);
+
+}
+
+#sendBtn{
+
+background:linear-gradient(
+135deg,
+#6C63FF,
+#00D4FF
+);
+
+box-shadow:0 8px 20px rgba(108,99,255,.35);
+
+}
+
+
+/*==================================================
+ TOAST
+==================================================*/
+
+#toast{
+
+position:fixed;
+
+left:50%;
+
+bottom:95px;
+
+transform:translateX(-50%);
+
+padding:12px 22px;
+
+border-radius:50px;
+
+background:linear-gradient(135deg,#6C63FF,#00D4FF);
+
+font-weight:600;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:.3s;
+
+z-index:2000;
+
+}
+
+#toast.show{
+
+opacity:1;
+
+}
+
+
+/*==================================================
+ LOADING
+==================================================*/
+
+#loading{
+
+position:fixed;
+
+inset:0;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+flex-direction:column;
+
+gap:15px;
+
+background:rgba(9,11,26,.92);
+
+z-index:3000;
+
+}
+
+#loading.active{
+
+display:flex;
+
+}
+
+.loader{
+
+width:60px;
+
+height:60px;
+
+border:5px solid rgba(255,255,255,.15);
+
+border-top:5px solid #00D4FF;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+
+/*==================================================
+ SETTINGS
+==================================================*/
+
+#settingsModal{
+
+display:none;
+
+position:fixed;
+
+inset:0;
+
+background:rgba(0,0,0,.6);
+
+backdrop-filter:blur(10px);
+
+align-items:center;
+
+justify-content:center;
+
+z-index:4000;
+
+}
+
+#settingsModal.active{
+
+display:flex;
+
+}
+
+.settingsCard{
+
+width:92%;
+
+max-width:420px;
+
+padding:24px;
+
+border-radius:24px;
+
+background:#171C38;
+
+border:1px solid var(--border);
+
+}
+
+.settingsCard h2{
+
+margin-bottom:20px;
+
+}
+
+.settingsCard label{
+
+display:block;
+
+margin:15px 0;
+
+font-size:15px;
+
+}
+
+.settingsCard select{
+
+width:100%;
+
+margin-top:8px;
+
+padding:10px;
+
+border-radius:12px;
+
+border:none;
+
+background:#232949;
+
+color:#fff;
+
+}
+
+#closeSettings{
+
+margin-top:18px;
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+border-radius:14px;
+
+background:linear-gradient(135deg,#6C63FF,#00D4FF);
+
+color:#fff;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+/*==================================================
+ DESKTOP
+==================================================*/
+
+@media (min-width:769px){
+
+.app{
+
+display:grid;
+
+grid-template-columns:280px 1fr;
+
+}
+
+.topbar{
+
+left:280px;
+
+width:calc(100% - 280px);
+
+}
+
+#sidebar{
+
+left:0;
+
+position:fixed;
+
+}
+
+main{
+
+margin-left:280px;
+
+padding:35px;
+
+margin-top:75px;
+
+margin-bottom:110px;
+
+}
+
+.hero h1{
+
+font-size:68px;
+
+}
+
+.hero p{
+
+font-size:20px;
+
+}
+
+.inputBar{
+
+left:280px;
+
+width:calc(100% - 280px);
+
+}
+
+}
+
+
+/*==================================================
+ MOBILE
+==================================================*/
+
+@media (max-width:768px){
+
+.hero{
+
+padding:20px 10px;
+
+}
+
+.hero h1{
+
+font-size:36px;
+
+line-height:1.15;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+}
+
+.welcome{
+
+padding:22px 16px;
+
+}
+
+.welcome h2{
+
+font-size:28px;
+
+}
+
+.welcome i{
+
+font-size:46px;
+
+}
+
+.bubble{
+
+max-width:100%;
+
+font-size:14px;
+
+}
+
+.inputBar{
+
+padding:10px;
+
+}
+
+.inputBox{
+
+padding:10px;
+
+}
+
+.inputBox button{
+
+width:44px;
+
+height:44px;
+
+}
+
+}
+
+
+/*==================================================
+ SMALL PHONE
+==================================================*/
+
+@media (max-width:420px){
+
+.hero h1{
+
+font-size:30px;
+
+}
+
+.hero p{
+
+font-size:14px;
+
+}
+
+.topbar h2{
+
+font-size:20px;
+
+}
+
+.logo h2{
+
+font-size:22px;
+
+}
+
+.welcome h2{
+
+font-size:24px;
+
+}
+
+.inputBox textarea{
+
+font-size:15px;
+
+}
+
+}
+
+
+/*==================================================
+ SCROLLBAR
+==================================================*/
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#0E1328;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:linear-gradient(#6C63FF,#00D4FF);
+
+border-radius:20px;
+
+}
+
+
+/*==================================================
+ SELECTION
+==================================================*/
+
+::selection{
+
+background:#6C63FF;
+
+color:#fff;
+
+}
+
+
+/*==================================================
+ ANIMATIONS
+==================================================*/
+
+button{
+
+transition:.25s ease;
+
+}
+
+button:active{
+
+transform:scale(.95);
+
+}
+
+img{
+
+max-width:100%;
+
+display:block;
+
+}
+
+.hidden{
+
+display:none!important;
+
+}
+
+
+/*==================================================
+ FINAL
+==================================================*/
+
+body.loaded{
+
+animation:fadeUp .5s ease;
+
+}
+/* ===============================
+   YHub AI v2 Premium Animation Pack
+================================ */
+
+/* Smooth app loading */
+body {
+    animation: appFade 0.6s ease-in-out;
+}
+
+@keyframes appFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Chat message animation */
+.message {
+    animation: messagePop 0.35s ease;
+}
+
+@keyframes messagePop {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+
+/* AI thinking animation */
+.thinking {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.thinking span {
+    width: 8px;
+    height: 8px;
+    background: #6C63FF;
+    border-radius: 50%;
+    animation: typingDots 1.4s infinite;
+}
+
+.thinking span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.thinking span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typingDots {
+    0%,80%,100% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Buttons premium hover */
+button {
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* Input focus effect */
+textarea,
+input {
+    transition: 0.3s ease;
+}
+
+textarea:focus,
+input:focus {
+    box-shadow: 0 0 15px rgba(108,99,255,0.35);
+}
+/* ===============================
+   YHub AI Code Block Design
+================================ */
+
+.codeBox{
+    position:relative;
+    background:#111827;
+    border-radius:12px;
+    padding:15px;
+    margin:10px 0;
+    overflow:auto;
+}
+
+
+.codeBox pre{
+    margin:0;
+    padding-top:25px;
+    white-space:pre-wrap;
+}
+
+
+.copyBtn{
+
+    position:absolute;
+    top:8px;
+    right:8px;
+
+    padding:5px 12px;
+
+    border:none;
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:12px;
+
+}
+/* Voice Listening Animation */
+
+#voiceBtn.listening{
+
+transform:scale(1.15);
+
+background:#ff4d4d;
+
+color:#fff;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{transform:scale(1);}
+
+50%{transform:scale(1.15);}
+
+100%{transform:scale(1);}
+
+}
+.msgActions{
+
+display:flex;
+
+justify-content:flex-end;
+
+gap:8px;
+
+margin-top:8px;
+
+}
+
+.msgActions button{
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font-size:15px;
+
+opacity:.7;
+
+}
+
+.msgActions button:hover{
+
+opacity:1;
+
+}
+/*=========================
+  Message 3-Dot Menu
+=========================*/
+
+.msgMenu{
+
+position:absolute;
+
+top:10px;
+
+right:10px;
+
+}
+
+.menu3Btn{
+
+background:transparent;
+
+border:none;
+
+color:inherit;
+
+cursor:pointer;
+
+font-size:16px;
+
+padding:4px;
+
+border-radius:6px;
+
+}
+
+.menu3Btn:hover{
+
+background:rgba(255,255,255,.12);
+
+}
+
+.menuPopup{
+
+display:none;
+
+position:absolute;
+
+right:0;
+
+top:30px;
+
+min-width:150px;
+
+background:#1b1b1b;
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:12px;
+
+overflow:hidden;
+
+z-index:1000;
+
+box-shadow:0 10px 25px rgba(0,0,0,.35);
+
+}
+
+.menuPopup.show{
+
+display:block;
+
+}
+
+.menuPopup button{
+
+width:100%;
+
+padding:12px;
+
+border:none;
+
+background:none;
+
+color:#fff;
+
+text-align:left;
+
+cursor:pointer;
+
+}
+
+.menuPopup button:hover{
+
+background:#2b2b2b;
+
+}
